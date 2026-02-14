@@ -1,0 +1,176 @@
+@import "tailwindcss";
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+  --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+      'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* ===== Sidebar layout ===== */
+.app-shell{
+    display:flex;
+    min-height:100vh;
+}
+
+/* collapsed width */
+.sidebar{
+    width:84px;
+    background: linear-gradient(180deg, #0b2a8f 0%, #061f73 55%, #02124d 100%);
+    transition: width .25s ease;
+    padding: 14px 10px;
+    box-shadow: 0 10px 25px rgba(2, 6, 23, .25);
+}
+
+/* expanded width on hover */
+.sidebar:hover{
+    width: 260px;
+}
+
+/* Brand */
+.sidebar__brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding: 10px 12px;
+    border-radius: 14px;
+    color:#fff;
+    font-weight:700;
+    margin-bottom: 16px;
+}
+
+/* Nav */
+.sidebar__nav{
+    display:flex;
+    flex-direction:column;
+    gap: 6px;
+}
+
+.sidebar__link{
+    display:flex;
+    align-items:center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    color: rgba(255,255,255,.88);
+    text-decoration:none;
+    transition: background .15s ease, transform .15s ease;
+    position:relative;
+}
+
+.sidebar__link i{
+    font-size: 18px;
+    width: 22px;
+    text-align:center;
+}
+
+/* label hidden by default (collapsed) */
+.sidebar__text{
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity .18s ease, transform .18s ease;
+    white-space: nowrap;
+}
+
+/* show labels when sidebar expands */
+.sidebar:hover .sidebar__text{
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* hover + active */
+.sidebar__link:hover{
+    background: rgba(255,255,255,.12);
+    transform: translateX(2px);
+}
+
+.sidebar__link.is-active{
+    background: rgba(255,255,255,.18);
+}
+
+/* main content */
+.main{
+    flex:1;
+    padding: 28px;
+}
+
+/* ===== Home cards ===== */
+.home-card{
+    text-decoration:none;
+}
+
+.home-card__inner{
+    background: #0a1b78;
+    color: aliceblue;
+    border-radius: 18px;
+    padding: 14px;
+    box-shadow: 0 16px 30px rgba(2, 6, 23, .18);
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.home-card:hover .home-card__inner{
+    transform: translateY(-2px);
+    color: rgb(139, 201, 255);
+    box-shadow: 0 20px 40px rgba(2, 6, 23, .22);
+}
+
+.home-card__header{
+    background: rgba(255,255,255,.22);
+    border-radius: 14px;
+    padding: 14px;
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    color:#fff;
+}
+
+.home-card__title{
+    font-weight: 800;
+    font-size: 32px;
+}
+
+.home-card__sub{
+    font-size: 24px;
+    opacity: .9;
+}
+
+.home-card__sub2{
+    font-size: 14px;
+    opacity: .75;
+}
+
+.home-card__value{
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.home-card__row{
+    margin-top: 12px;
+    border-radius: 14px;
+    padding: 14px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    color:#fff;
+}
+
+.home-card__row.is-green{
+    background: #08925d;
+}
+
+.home-card__row.is-yellow{
+    background: #d2b74a;
+    color: #ffffff;
+}
+
+tr.row-selected td { 
+    background: rgba(59, 130, 246, 0.18); 
+}
+tr.row-selected { 
+    outline: 2px solid #38bdf8; outline-offset: -2px; 
+}
+
