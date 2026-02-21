@@ -88,8 +88,12 @@ class UserManagementController extends Controller
             ORDER BY PosisiID
         "))->pluck('PosisiID');
 
+        $defaultVersi = '1606.21.4';
+
+
         return view('admin.users.create', [
             'posisiOptions' => $posisiOptions,
+            'defaultVersi'  => $defaultVersi,
         ]);
     }
 
@@ -156,9 +160,12 @@ class UserManagementController extends Controller
             ORDER BY PosisiID
         "))->pluck('PosisiID');
 
+        $defaultVersi = '1606.21.4';
+
         return view('admin.users.edit', [
             'user' => $user,
             'posisiOptions' => $posisiOptions,
+            'defaultVersi'  => $defaultVersi,
         ]);
     }
 

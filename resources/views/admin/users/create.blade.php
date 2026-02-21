@@ -24,11 +24,21 @@
 
             <form method="POST" action="{{ route('admin.users.store') }}" class="row g-3">
                 @csrf
+                
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                    @foreach ($errors->all() as $err)
+                        <li>{{ $err }}</li>
+                    @endforeach
+                    </ul>
+                </div>
+                @endif
 
                 <div class="col-md-6">
                     <label class="form-label fw-semibold">LoginID</label>
-                    <input type="text" name="login_name" class="form-control" value="{{ old('login_name') }}" required>
-                    @error('login_name') <div class="text-danger small">{{ $message }}</div> @enderror
+                    <input type="text" name="login_id" class="form-control" value="{{ old('login_id') }}" required>
+                    @error('login_id') <div class="text-danger small">{{ $message }}</div> @enderror
                     <div class="form-text">Ini yang dipakai untuk login (username perusahaan).</div>
                 </div>
 

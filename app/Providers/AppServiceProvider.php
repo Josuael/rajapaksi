@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use App\Auth\MUserProvider;
+use Illuminate\Support\Facades\URL;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -18,6 +19,11 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+
+    if (app()->environment('local')) {
+        URL::forceScheme('https'); 
+    }
+
         Paginator::useBootstrapFive();
 
         /**

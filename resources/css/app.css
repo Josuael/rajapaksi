@@ -174,3 +174,152 @@ tr.row-selected {
     outline: 2px solid #38bdf8; outline-offset: -2px; 
 }
 
+/* =====================================================================
+   Responsive tweaks (HP / Tablet / Desktop)
+   - Styling only (no change to Blade structure / logic)
+   ===================================================================== */
+
+/* --- Tablet & down: stop hover-expand (touch devices) --- */
+@media (max-width: 1024px){
+    .sidebar{
+        width: 220px;
+        transition: none !important;   /* ⬅️ stop animasi width */
+    }
+    .sidebar:hover{
+        width: 220px !important;       /* ⬅️ lock, jangan expand */
+    }
+
+    .sidebar__text{ opacity: 1; transform: none; }
+
+    /* ⬅️ matiin hover link biar ga “ngetrigger” */
+    .sidebar__link{
+        transition: none !important;
+        transform: none !important;
+    }
+    .sidebar__link:hover{
+        transform: none !important;
+        background: rgba(255,255,255,.12);
+    }
+}
+
+
+/* --- Mobile: sidebar becomes top bar + horizontal nav --- */
+@media (max-width: 768px){
+    .app-shell{ flex-direction: column; }
+
+    .sidebar{
+        width: 100%;
+        padding: 12px 12px;
+        border-radius: 0;
+    }
+
+    .sidebar__brand{
+        margin-bottom: 10px;
+        padding: 10px 10px;
+        justify-content: center;
+    }
+
+    .sidebar__nav{
+        flex-direction: row;
+        gap: 8px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 6px;
+    }
+
+    .sidebar__nav::-webkit-scrollbar{ height: 6px; }
+    .sidebar__nav::-webkit-scrollbar-thumb{ background: rgba(255,255,255,.22); border-radius: 999px; }
+
+    .sidebar__link{
+        flex: 0 0 auto;
+        padding: 10px 12px;
+        border-radius: 999px;
+        background: rgba(255,255,255,.08);
+    }
+    .sidebar__link:hover{ transform: none; }
+
+    .sidebar__text{ opacity: 1; transform: none; }
+
+    .main{ padding: 16px; }
+
+    /* topbar wrap biar gak overflow */
+    .main > .w-100.d-flex.justify-content-end.align-items-center{
+        flex-wrap: wrap;
+        justify-content: center !important;
+        gap: 10px !important;
+        padding: 12px !important;
+    }
+
+    /* logo kanan atas jangan kebesaran */
+    .main img[alt="PT. Rajapakasi"],
+    .main img[alt="PT. Weba Footwear"]{
+        height: 44px !important;
+    }
+
+        /* ⬅️ paling penting: stop hover expand & animasi pas mode HP */
+    .sidebar{
+        transition: none !important;
+    }
+    .sidebar:hover{
+        width: 100% !important;
+    }
+
+    .sidebar__link{
+        transition: none !important;
+        transform: none !important;
+    }
+    .sidebar__link:hover{
+        transform: none !important;
+    }
+
+}
+
+/* --- Small phones: tighten spacing/typography --- */
+@media (max-width: 480px){
+    .home-card__title{ font-size: 22px; }
+    .home-card__sub{ font-size: 16px; }
+    .home-card__value{ font-size: 22px; }
+    .home-card__header,
+    .home-card__row{ padding: 12px; }
+
+    .main{ padding: 12px; }
+
+    /* table lebih enak dibaca di HP */
+    .table{ font-size: 0.875rem; }
+    .table thead th{ white-space: nowrap; }
+}
+
+
+@media (hover: none) and (pointer: coarse) {
+  /* Matikan animasi hover khusus elemen sidebar (biar gak "geter") */
+  .sidebar { transition: none !important; }
+  .sidebar:hover { width: 100% !important; } /* keep stable on mobile */
+
+  .sidebar__link,
+  .sidebar__brand {
+    transition: none !important;
+    transform: none !important;
+  }
+  .sidebar__link:hover,
+  .sidebar__brand:hover {
+    transform: none !important;
+    background: rgba(255,255,255,.08) !important; /* stay same */
+  }
+
+  /* Matikan hover scale/shadow (Tailwind classes) di HP */
+  .hover\:scale-105:hover,
+  .hover\:scale-110:hover {
+    transform: none !important;
+  }
+  .hover\:shadow-lg:hover {
+    box-shadow: none !important;
+  }
+}
+
+/* Extra lock: prevent Safari/Chrome mobile from sticky-hover glitch */
+@media (max-width: 768px) {
+  .sidebar__link:active { transform: none !important; }
+  .sidebar__link:focus { outline: none; }
+}
+
+
